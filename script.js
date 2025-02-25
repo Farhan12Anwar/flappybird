@@ -194,7 +194,7 @@ async function saveScore(score) {
     if (!username) return;
   }
 
-  await fetch("https://flappybird-3xie.onrender.com/save-score", {
+  await fetch("http://localhost:5000/save-score", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, score }),
@@ -204,8 +204,11 @@ async function saveScore(score) {
 }
 
 async function loadLeaderboard() {
-  let res = await fetch("https://flappybird-3xie.onrender.com/leaderboard");
+  let res = await fetch("http://localhost:5000/leaderboard");
   let scores = await res.json();
+
+  scores.sort((a, b) => b.score - a.score); // Sort by highest score first
+
   leaderboardList.innerHTML = scores
     .map((s) => `<li>${s.username}: ${s.score}</li>`)
     .join("");
@@ -239,7 +242,25 @@ document.getElementById("start-btn").addEventListener("click", () => {
 });
 
 // Also allow touch anywhere to start
-document.addEventListener("touchstart", () => {
+document.addEventListener("touchstart", (e) => {
+  const authContainer = document.getElementById("auth-container");
+  const gameContainer = document.getElementById("game-container");
+
+  // Prevent triggering game if user is on the auth page
+  if (authContainer.style.display !== "none") {
+    return;
+  }
+
+  // Prevent triggering game if user taps UI elements (buttons, inputs, etc.)
+  if (
+    e.target.tagName === "INPUT" ||
+    e.target.tagName === "BUTTON" ||
+    e.target.tagName === "SELECT" ||
+    e.target.closest("#auth-container")
+  ) {
+    return;
+  }
+
   bird.src = birdImages[currentBird][1]; // Flap image
   bird_dy = -7.6;
   if (gameState !== "Play") {
