@@ -1,0 +1,117 @@
+/* General Styles */
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Press Start 2P', cursive; /* Retro arcade font */
+	background-color: #87CEEB; /* Sky blue */
+	overflow: hidden; /* Prevent scrolling */
+	text-align: center;
+  }
+  
+  /* Game Background */
+  .background {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background: url('./images/background-img.png') no-repeat center center/cover;
+  }
+  
+  /* Bird Selection Menu */
+  #bird-select {
+	z-index: 10;
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 16px;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: white;
+	border: 2px solid black;
+	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+	font-family: 'Press Start 2P', cursive;
+	cursor: pointer;
+  }
+  
+  /* Bird */
+  .bird {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	top: 40vh;
+	left: 20vw;
+  }
+  
+  /* Game Message */
+  .message {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 20px;
+	color: white;
+	background: rgba(0, 0, 0, 0.6);
+	padding: 10px 20px;
+	border-radius: 10px;
+	display: block;
+  }
+  
+  /* Score Display */
+  .score {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 20px;
+	color: white;
+	background: rgba(0, 0, 0, 0.6);
+	padding: 10px;
+	border-radius: 10px;
+  }
+  
+  /* Leaderboard Styling */
+  .leaderboard {
+	z-index: 10;
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translateX(-50%);
+	background: rgba(0, 0, 0, 0.8);
+	color: white;
+	padding: 20px;
+	border-radius: 15px;
+	width: 300px;
+	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+	display: block; /* Initially visible */
+  }
+  
+  /* Leaderboard Title */
+  .leaderboard h3 {
+	font-size: 18px;
+	margin-bottom: 10px;
+	border-bottom: 2px solid white;
+	padding-bottom: 5px;
+  }
+  
+  /* Leaderboard List */
+  #leaderboard-list {
+	list-style: none;
+	padding: 0;
+  }
+  
+  #leaderboard-list li {
+	font-size: 14px;
+	padding: 5px;
+	background: rgba(255, 255, 255, 0.2);
+	margin-bottom: 5px;
+	border-radius: 5px;
+  }
+  
+  /* Pipes */
+  .pipe {
+	position: absolute;
+	width: 60px;
+	background-color: green;
+	border: 3px solid darkgreen;
+	border-radius: 10px;
+  }
+  

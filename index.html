@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flappy Bird Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <div class="background"></div>
+    <select id="bird-select">
+      <option value="./images/Bird-2.png">Red Bird</option>
+      <option value="./images/background-img.png">Blue Bird</option>
+      <option value="./images/favicon.ico">Green Bird</option>
+    </select>
+    <img src="./images/Bird.png" class="bird" id="bird-1" />
+    <div class="message">Press Enter To Start</div>
+    <div class="score">Score: <span id="score_val">0</span></div>
+    <div class="leaderboard">
+      <h3>Leaderboard</h3>
+      <ul id="leaderboard-list"></ul>
+    </div>
+  </body>
+</html>
