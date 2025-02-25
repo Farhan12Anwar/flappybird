@@ -3,25 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flappy Bird Game</title>
+    <title>Flappy Bird</title>
     <link rel="stylesheet" href="style.css" />
-    <script defer src="script.js"></script>
   </head>
   <body>
-    <div class="background"></div>
-    <select id="bird-select">
-      <option value="./images/Bird-2.png">Red Bird</option>
-      <option value="./images/background-img.png">Blue Bird</option>
-      <option value="./images/favicon.ico">Green Bird</option>
-    </select>
-    <button id="start-btn">Tap to Start</button>
-
-    <img src="./images/bird1.png" class="bird" id="bird-1" />
-    <div class="message">Press Enter To Start</div>
-    <div class="score">Score: <span id="score_val">0</span></div>
-    <div class="leaderboard">
-      <h3>Leaderboard</h3>
-      <ul id="leaderboard-list"></ul>
+    <div class="auth-container" id="auth-container">
+      <h2 id="auth-title">Login</h2>
+      <form id="auth-form">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+      <p id="toggle-auth">Don't have an account? <span>Register</span></p>
     </div>
+
+    <div id="game-container" style="display: none">
+        <button id="logout-btn">Logout</button>
+        <h3 id="display-username"></h3> <!-- Username will be displayed here -->
+        <div class="background"></div>
+        <select id="bird-select">
+          <option value="Red Bird">Red Bird</option>
+          <option value="Blue Bird">Blue Bird</option>
+          <option value="Green Bird">Green Bird</option>
+        </select>
+        <button id="start-btn">Tap to Start</button>
+        <img src="./images/bird1.png" class="bird" id="bird" />
+        <div class="message">Press Enter To Start</div>
+        <div class="score">Score: <span id="score_val">0</span></div>
+        <div class="leaderboard">
+          <h3>Leaderboard</h3>
+          <ul id="leaderboard-list"></ul>
+        </div>
+      </div>
+      
+
+    <script src="script.js"></script>
   </body>
 </html>

@@ -188,18 +188,23 @@ function endGame() {
 }
 
 async function saveScore(score) {
-  let username = prompt("Enter your name:");
-  if (!username) return;
-  await fetch("https://flappybird-3xie.onrender.com/save-score", {
+  let username = localStorage.getItem("username"); // Use stored username
+  if (!username) {
+    username = prompt("Enter your name:");
+    if (!username) return;
+  }
+
+  await fetch("http://localhost:5000/save-score", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, score }),
   });
-  loadLeaderboard();
+
+  loadLeaderboard(); // Refresh leaderboard after score submission
 }
 
 async function loadLeaderboard() {
-  let res = await fetch("https://flappybird-3xie.onrender.com/leaderboard");
+  let res = await fetch("http://localhost:5000/leaderboard");
   let scores = await res.json();
   leaderboardList.innerHTML = scores
     .map((s) => `<li>${s.username}: ${s.score}</li>`)
@@ -241,4 +246,85 @@ document.addEventListener("touchstart", () => {
     startGame();
     document.getElementById("start-btn").style.display = "none"; // Hide button
   }
+});
+
+/////////////LOGIN/REGISTER
+
+document.addEventListener("DOMContentLoaded", () => {
+  const authContainer = document.getElementById("auth-container");
+  const authForm = document.getElementById("auth-form");
+  const authTitle = document.getElementById("auth-title");
+  const toggleAuth = document.getElementById("toggle-auth");
+  const gameContainer = document.getElementById("game-container");
+  const logoutBtn = document.getElementById("logout-btn");
+  let isLogin = true;
+
+  toggleAuth.addEventListener("click", () => {
+    isLogin = !isLogin;
+    authTitle.innerText = isLogin ? "Login" : "Register";
+    authForm.querySelector("button").innerText = isLogin ? "Login" : "Register";
+    toggleAuth.innerHTML = isLogin
+      ? "Don't have an account? <span>Register</span>"
+      : "Already have an account? <span>Login</span>";
+  });
+
+  authForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    const endpoint = isLogin ? "/login" : "/register";
+    const response = await fetch(`http://localhost:5000${endpoint}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      console.log("Login successful:", data);
+      localStorage.setItem("username", username); // Store username
+      authContainer.style.display = "none";
+      gameContainer.style.display = "block";
+      document.getElementById(
+        "display-username"
+      ).innerText = `Welcome, ${username}!`;
+      loadLeaderboard();
+    } else {
+      alert(data.error);
+    }
+  });
+
+  // Show the username on page load if logged in
+  document.addEventListener("DOMContentLoaded", () => {
+    const savedUsername = localStorage.getItem("username");
+    if (savedUsername) {
+      authContainer.style.display = "none";
+      gameContainer.style.display = "block";
+      document.getElementById(
+        "display-username"
+      ).innerText = `Welcome, ${savedUsername}!`;
+      loadLeaderboard();
+    }
+  });
+
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    gameContainer.style.display = "none";
+    authContainer.style.display = "block";
+  });
+
+  if (localStorage.getItem("token")) {
+    authContainer.style.display = "none";
+    gameContainer.style.display = "block";
+    loadLeaderboard();
+  }
+});
+
+logoutBtn.addEventListener("click", () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("username");
+  gameContainer.style.display = "none";
+  authContainer.style.display = "block";
 });
