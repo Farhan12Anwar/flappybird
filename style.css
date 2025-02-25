@@ -160,6 +160,21 @@ body {
 	animation: bird-flap 0.3s infinite ease-in-out;
   }
   
+  #start-btn {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 15px 30px;
+	font-size: 18px;
+	font-family: 'Press Start 2P', cursive;
+	background: yellow;
+	border: 2px solid black;
+	border-radius: 10px;
+	cursor: pointer;
+	z-index: 10;
+  }
+  
   /* Score Styling */
   .score {
 	z-index: 10;

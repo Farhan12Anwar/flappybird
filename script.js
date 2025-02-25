@@ -144,10 +144,6 @@ function movePipes() {
 }
 
 // Handle touch input for jumping
-document.addEventListener("touchstart", () => {
-  bird.src = birdImages[currentBird][1]; // Flap image
-  bird_dy = -7.6;
-});
 
 // Revert to idle image when finger is lifted
 document.addEventListener("touchend", () => {
@@ -231,3 +227,18 @@ function updateScore() {
     scoreElement.classList.remove("increase");
   }, 200);
 }
+
+document.getElementById("start-btn").addEventListener("click", () => {
+  startGame();
+  document.getElementById("start-btn").style.display = "none"; // Hide button after game starts
+});
+
+// Also allow touch anywhere to start
+document.addEventListener("touchstart", () => {
+  bird.src = birdImages[currentBird][1]; // Flap image
+  bird_dy = -7.6;
+  if (gameState !== "Play") {
+    startGame();
+    document.getElementById("start-btn").style.display = "none"; // Hide button
+  }
+});
