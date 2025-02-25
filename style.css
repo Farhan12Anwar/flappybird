@@ -107,12 +107,77 @@ body {
 	border-radius: 5px;
   }
   
-  /* Pipes */
-  .pipe {
+/* Pipes - Enhanced Look */
+.pipe {
 	position: absolute;
 	width: 60px;
-	background-color: green;
-	border: 3px solid darkgreen;
+	background: linear-gradient(to bottom, #4caf50, #2e7d32);
+	border: 3px solid #1b5e20;
 	border-radius: 10px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+	animation: pipe-entry 0.3s ease-out;
+  }
+  
+  /* Pipe Wobble Effect */
+  @keyframes pipe-entry {
+	from {
+	  transform: scaleY(0);
+	}
+	to {
+	  transform: scaleY(1);
+	}
+  }
+  
+  @keyframes pipe-wobble {
+	0%, 100% {
+	  transform: rotate(0deg);
+	}
+	50% {
+	  transform: rotate(2deg);
+	}
+  }
+  
+  /* Apply Wobble Effect to Pipes */
+  .pipe:nth-child(even) {
+	animation: pipe-wobble 2s infinite ease-in-out;
+  }
+  .pipe:nth-child(odd) {
+	animation: pipe-wobble 2s infinite ease-in-out reverse;
+  }
+  
+  /* Bird Flapping Animation */
+  @keyframes bird-flap {
+	0%, 100% {
+	  transform: rotate(-5deg);
+	}
+	50% {
+	  transform: rotate(10deg);
+	}
+  }
+  
+  /* Apply Flapping Animation */
+  .bird {
+	animation: bird-flap 0.3s infinite ease-in-out;
+  }
+  
+  /* Score Styling */
+  .score {
+	z-index: 10;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 22px;
+	color: white;
+	background: rgba(0, 0, 0, 0.7);
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(255, 255, 0, 0.8);
+	font-weight: bold;
+	transition: transform 0.2s ease-in-out;
+  }
+  
+  /* Score Animation */
+  .score.increase {
+	transform: scale(1.2);
   }
   

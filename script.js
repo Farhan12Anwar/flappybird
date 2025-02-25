@@ -207,3 +207,13 @@ document.addEventListener("keydown", (e) => {
     bird_dy = -7.6;
   }
 });
+
+// Animate the score when it increases
+function updateScore() {
+  let scoreElement = document.getElementById("score_val");
+  scoreElement.innerText = parseInt(scoreElement.innerText) + 1;
+  scoreElement.classList.add("increase");
+  setTimeout(() => {
+    scoreElement.classList.remove("increase");
+  }, 200);
+}
