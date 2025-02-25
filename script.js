@@ -180,7 +180,7 @@ function endGame() {
 async function saveScore(score) {
   let username = prompt("Enter your name:");
   if (!username) return;
-  await fetch("http://localhost:5000/save-score", {
+  await fetch("https://flappybird-3xie.onrender.com/save-score", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, score }),
@@ -189,7 +189,7 @@ async function saveScore(score) {
 }
 
 async function loadLeaderboard() {
-  let res = await fetch("http://localhost:5000/leaderboard");
+  let res = await fetch("https://flappybird-3xie.onrender.com/leaderboard");
   let scores = await res.json();
   leaderboardList.innerHTML = scores
     .map((s) => `<li>${s.username}: ${s.score}</li>`)
