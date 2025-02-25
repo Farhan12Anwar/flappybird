@@ -194,7 +194,7 @@ async function saveScore(score) {
     if (!username) return;
   }
 
-  await fetch("http://localhost:5000/save-score", {
+  await fetch("https://flappybird-3xie.onrender.com/save-score", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, score }),
@@ -204,7 +204,7 @@ async function saveScore(score) {
 }
 
 async function loadLeaderboard() {
-  let res = await fetch("http://localhost:5000/leaderboard");
+  let res = await fetch("https://flappybird-3xie.onrender.com/leaderboard");
   let scores = await res.json();
 
   scores.sort((a, b) => b.score - a.score); // Sort by highest score first
@@ -295,11 +295,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = document.getElementById("password").value;
 
     const endpoint = isLogin ? "/login" : "/register";
-    const response = await fetch(`http://localhost:5000${endpoint}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
+    const response = await fetch(
+      `https://flappybird-3xie.onrender.com${endpoint}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      }
+    );
 
     const data = await response.json();
     if (response.ok) {
