@@ -7,7 +7,7 @@ let leaderboardList = document.getElementById("leaderboard-list");
 let leaderboard = document.querySelector(".leaderboard");
 let gameState = "Start";
 let gravity = 0.4; // Reduce gravity for mobile
-let jumpPower = -6.5; 
+let jumpPower = -6.5;
 let bird_dy = 0;
 let pipes = [];
 let move_speed = 3;
@@ -145,17 +145,16 @@ function movePipes() {
 
 // Handle touch input for jumping
 document.addEventListener("touchstart", () => {
-    bird.src = birdImages[currentBird][1]; // Flap image
-    bird_dy = -7.6;
-  });
-  
-  // Revert to idle image when finger is lifted
-  document.addEventListener("touchend", () => {
-    setTimeout(() => {
-      bird.src = birdImages[currentBird][0]; // Idle image
-    }, 100);
-  });
-  
+  bird.src = birdImages[currentBird][1]; // Flap image
+  bird_dy = -7.6;
+});
+
+// Revert to idle image when finger is lifted
+document.addEventListener("touchend", () => {
+  setTimeout(() => {
+    bird.src = birdImages[currentBird][0]; // Idle image
+  }, 100);
+});
 
 function checkCollision() {
   let birdRect = bird.getBoundingClientRect();
