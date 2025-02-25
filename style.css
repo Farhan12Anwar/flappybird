@@ -58,6 +58,7 @@ body {
   
   /* Score Display */
   .score {
+	z-index: 10;
 	position: absolute;
 	top: 10px;
 	right: 10px;
