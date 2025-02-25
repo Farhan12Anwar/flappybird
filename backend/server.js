@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors()); // Enable CORS for all routes
 
 mongoose.connect(
   "mongodb+srv://anwarfarhan339:cannonx100@cluster0.ucx0c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
